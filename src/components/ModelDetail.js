@@ -45,8 +45,8 @@ const ModelDetail = ({ model }) => {
   return (
     <div>
       <h2 className="text-2xl font-bold mt-8 text-gray-700">Model Details</h2>
-      <div className="flex justify-between mt-4">
-        <div className="bg-white border rounded-md p-6 w-[48%]">
+      <div className="flex justify-between mt-4 gap-4 flex-wrap">
+        <div className="bg-white border rounded-md p-6  min-w-[200px] w-full md:w-[48%]">
           <img
             src={model?.icon || "https://picsum.photos/200"}
             className="w-[40px] rounded-md"
@@ -78,7 +78,7 @@ const ModelDetail = ({ model }) => {
             </span>
           </span>
         </div>
-        <div className="bg-white border rounded-md p-6 w-[48%] h-fit">
+        <div className="bg-white border rounded-md p-6 min-w-[200px] w-full md:w-[48%] h-fit">
           <p className="text-2xl font-bold text-gray-800 mb-2">
             {model.provider}
           </p>

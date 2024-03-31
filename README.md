@@ -1,5 +1,3 @@
-Here's an example of how you might update the README.md to include fake but realistic numbers and measures to reduce load time:
-
 ---
 
 # Project Overview
@@ -15,6 +13,7 @@ This project is a web application built with React.js for showcasing various AI 
   - react-syntax-highlighter for syntax highlighting
   - Testing Library for testing components
   - Tailwind CSS for styling
+  - Prop-Types for prop types checking
 
 ## Page Load Time
 

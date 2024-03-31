@@ -4,7 +4,7 @@ import { LuHome, LuTrendingUp, LuHeart } from "react-icons/lu";
 
 const Sidebar = () => {
   return (
-    <div className="w-1/6 bg-white h-screen border border-t-0">
+    <div className="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 bg-white h-screen border border-t-0">
       <nav className="mt-4">
         <ul className="list-none">
           <li>

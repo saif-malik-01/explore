@@ -19,7 +19,7 @@ const App = () => {
       <Header />
       <div className="flex">
         <Sidebar />
-        <div className="w-5/6">
+        <div className="md:w-5/6 h-[88vh] overflow-y-scroll">
           <ErrorBoundary>
             <Suspense fallback={<div>Loading...</div>}>
               <Routes>

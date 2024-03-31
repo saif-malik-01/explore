@@ -38,7 +38,7 @@ const Model = () => {
   }
 
   return (
-    <div className="bg-gray-50 h-full">
+    <div className="bg-gray-50 min-h-full">
       <div className="px-6 py-4">
         <ModelDetail model={model} />
       </div>

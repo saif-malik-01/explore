@@ -35,9 +35,9 @@ const Favorite = () => {
   }
 
   return (
-    <div className="container mx-auto px-6 py-4 bg-gray-50 h-full">
+    <div className="container mx-auto px-6 py-4 bg-gray-50 min-h-full">
       <h1 className="text-4xl font-bold mb-1 mt-4 text-gray-700">Favorite Models</h1>
-      <span className="text-md text-gray-600">Popular models by visitors.</span>
+      <span className="text-md text-gray-600">Saved Models List.</span>
       {favorites.length === 0 ? (
         <p className="mt-8 text-center">No favorite models yet. Add some from the Explore page!</p>
       ) : (

@@ -22,7 +22,7 @@ const Search = () => {
   }, [query]);
 
   return (
-    <div className="bg-gray-50 h-full">
+    <div className="bg-gray-50 min-h-full">
       <div className="px-6 py-4">
         <h1 className="text-4xl font-bold mb-1 mt-4 text-gray-700">
           Search Models
