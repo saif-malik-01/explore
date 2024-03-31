@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const getModels = async () => {
   try {
     const response = await axios.get(`/api/models`);
