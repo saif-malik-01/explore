@@ -1,7 +1,9 @@
+import axios from "axios";
+
 export const getModels = async () => {
   try {
-    const data = await fetch(process.env.REACT_APP_BASE_URL + "/models");
-    return await data.json();
+    const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/models`);
+    return response.data;
   } catch (error) {
     console.log(error);
   }
@@ -9,8 +11,8 @@ export const getModels = async () => {
 
 export const getModelById = async (id) => {
   try {
-    const data = await fetch(`${process.env.REACT_APP_BASE_URL}/models/${id}`);
-    return await data.json();
+    const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/models/${id}`);
+    return response.data;
   } catch (error) {
     console.log(error);
   }
@@ -18,7 +20,7 @@ export const getModelById = async (id) => {
 
 export const increaseVisitorById = async (id) => {
   try {
-    await fetch(`${process.env.REACT_APP_BASE_URL}/models/${id}/visit`, { method: "Put" });
+    await axios.put(`${process.env.REACT_APP_BASE_URL}/models/${id}/visit`);
   } catch (error) {
     console.log(error);
   }
@@ -26,8 +28,12 @@ export const increaseVisitorById = async (id) => {
 
 export const getModelResponse = async (id, text) => {
   try {
-    const data = await fetch(`${process.env.REACT_APP_BASE_URL}/model/${id}/sandbox?q=${text}`);
-    return await data.json();
+    const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/model/${id}/sandbox`, {
+      params: {
+        q: text,
+      },
+    });
+    return response.data;
   } catch (error) {
     console.log(error);
   }
@@ -35,8 +41,12 @@ export const getModelResponse = async (id, text) => {
 
 export const getModelByQuery = async (query) => {
   try {
-    const data = await fetch(`${process.env.REACT_APP_BASE_URL}/search?term=${query}`);
-    return await data.json();
+    const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/search`, {
+      params: {
+        term: query,
+      },
+    });
+    return response.data;
   } catch (error) {
     console.log(error);
   }
@@ -44,14 +54,12 @@ export const getModelByQuery = async (query) => {
 
 export const addModel = async (data) => {
   try {
-    const res = await fetch(`${process.env.REACT_APP_BASE_URL}/model`, {
-      method: "POST",
+    const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/model`, data, {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
     });
-    return res.status;
+    return response.status;
   } catch (error) {
     console.log(error);
   }
