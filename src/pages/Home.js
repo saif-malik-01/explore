@@ -1,59 +1,76 @@
-// pages/Home.js
-import React, { useState, useEffect } from 'react';
-import ModelForm from '../components/ModelForm';
-import { getModels } from '../api/models';
+import React, { useState, useEffect, useMemo, useCallback } from "react";
+
+import { getModels } from "../api/models";
+import ModelCard from "../components/ModelCard";
+import { getFavoriteModels } from "../utils/favoriteModel";
 
 const Home = () => {
   const [models, setModels] = useState([]);
-  const [showForm, setShowForm] = useState(false);
-
-  const toggleForm = () => {
-    setShowForm(!showForm);
-  };
+  const [favoriteModelsId, setFavModelsId] = useState([]);
 
   useEffect(() => {
-    getModels().then(data => setModels(data));
+    getModels().then((data) => setModels(data));
+  }, [favoriteModelsId]);
+
+  useEffect(() => {
+    const favModelsId = getFavoriteModels();
+    setFavModelsId(favModelsId);
   }, []);
 
-  const categories = [...new Set(models.map(model => model.category))];
+  const onFavoriteClick = useCallback((id) => {
+    setFavModelsId((prevIds) => {
+      if (prevIds.includes(id)) {
+        return prevIds.filter((favId) => favId !== id);
+      } else {
+        return [...prevIds, id];
+      }
+    });
+  }, []);
+
+  const categories = useMemo(() => {
+    return [...new Set(models.map((model) => model.category))];
+  }, [models]);
+
+  const filteredModels = useMemo(() => {
+    return models.reduce((acc, model) => {
+      acc[model.category] = models.filter((m) => m.category === model.category);
+      return acc;
+    }, {});
+  }, [models]);
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-semibold mb-8">AI Models</h1>
-      {showForm ? (
-        <>
-          <ModelForm />
-          <button
-            onClick={toggleForm}
-            className="mt-4 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-          >
-            Cancel
-          </button>
-        </>
-      ) : (
-        <button
-          onClick={toggleForm}
-          className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        >
-          Add Model
-        </button>
-      )}
-      {categories.map(category => (
-        <div key={category} className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">{category}</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {models.filter(model => model.category === category).map(model => (
-              <div key={model.id} className="border p-4 rounded-md shadow-md">
-                <h3 className="text-lg font-semibold">{model.name}</h3>
-                <p className="text-gray-600 mt-2">{model.description}</p>
-                <p className="text-gray-600 mt-2">Visitors: {model.visitors}</p>
+    <div className="bg-gray-50 h-full">
+      <div className="px-6 py-4">
+        <h1 className="text-4xl font-bold mb-1 mt-4 text-gray-700">
+          All Models
+        </h1>
+        <span className="text-md text-gray-600">
+          Explore AI Models by their category.
+        </span>
+
+        <div className="container flex-col gap-6 mt-10">
+          {categories.map((category) => (
+            <section key={category} className="mb-8">
+              <h2 className="text-2xl text-gray-700 font-semibold mb-4">
+                {category}
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {filteredModels[category].map((model) => (
+                  <ModelCard
+                    key={model.id}
+                    model={model}
+                    favorite={favoriteModelsId.includes(model.id)}
+                    onFavoriteClick={onFavoriteClick}
+                  />
+                ))}
               </div>
-            ))}
-          </div>
+            </section>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   );
 };
+
 
 export default Home;

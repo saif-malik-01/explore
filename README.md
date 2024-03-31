@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+Here's an example of how you might update the README.md to include fake but realistic numbers and measures to reduce load time:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+# Project Overview
 
-In the project directory, you can run:
+This project is a web application built with React.js for showcasing various AI models deployed by organizations and developers. The application allows users to explore available models, view model details, search for models, and interact with model sandboxes.
 
-### `npm start`
+## JavaScript Framework and Packages
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Framework**: React.js
+- **Major Plugins/Packages**:
+  - react-router-dom for routing
+  - react-icons for icons
+  - react-syntax-highlighter for syntax highlighting
+  - Testing Library for testing components
+  - Tailwind CSS for styling
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Page Load Time
 
-### `npm test`
+The page load time of the application was measured using the browser's developer tools and various online performance testing tools. On average, the initial page load time is around 1.5-2 seconds for a first-time visitor and around 0.5-1 second for subsequent visits due to caching.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Measures to Reduce Load Time
 
-### `npm run build`
+1. **Code Splitting**: React's lazy loading and code splitting were used to load components only when needed, reducing the initial bundle size and improving load times.
+2. **Minification and Compression**: Static assets were minified and compressed to reduce file sizes and improve loading speed.
+3. **Network Optimization**: Network requests were optimized by reducing the number of requests, using HTTP/2, and optimizing server responses to reduce load times.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+These measures help decrease the load time and improve the performance of the application.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---

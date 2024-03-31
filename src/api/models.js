@@ -1,72 +1,60 @@
-let models = [
-  {
-    id: 1,
-    name: "BERT",
-    description: "Bidirectional Encoder Representations from Transformers",
-    visitors: 0,
-    category: "NLP",
-    useCases: [
-      "Text classification",
-      "Question answering",
-      "Named entity recognition",
-    ],
-    framework: "TensorFlow",
-    license: "Apache License 2.0",
-    latestUpdate: "2021-08-01",
-    popularity: "High",
-    provider: "Google",
-    snippet: `
-from transformers import BertTokenizer, BertModel
-import torch
+const BASE_URL = "http://35.184.179.52";
 
-tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-model = BertModel.from_pretrained('bert-base-uncased')
-
-inputs = tokenizer("Hello, my dog is cute", return_tensors="pt")
-outputs = model(**inputs)
-`,
-  },
-  {
-    id: 2,
-    name: "GPT-3",
-    description: "Generative Pre-trained Transformer 3",
-    visitors: 0,
-    category: "NLP",
-    useCases: [
-      "Text generation",
-      "Language translation",
-      "Conversational agents",
-    ],
-    framework: "OpenAI API",
-    license: "Proprietary",
-    latestUpdate: "2020-06-04",
-    popularity: "Very high",
-    provider: "OpenAI",
-    snippet: `
-import openai
-
-openai.api_key = 'your-api-key'
-response = openai.Completion.create(
-  engine="text-davinci-003",
-  prompt="Translate the following English text to French: 'Hello, how are you?'",
-  max_tokens=60
-)
-print(response.choices[0].text.strip())
-`,
-  },
-  // Add more models here
-];
-
-export const getModels = () => {
-  return Promise.resolve(models);
+export const getModels = async () => {
+  try {
+    const data = await fetch(BASE_URL + "/models");
+    return await data.json();
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-// get models by and increase visitors count
-export const getModelById = (id) => {
-  const index = models.findIndex((model) => model.id === parseInt(id));
-  if (index !== -1) {
-    models[index].visitors++;
-    return Promise.resolve(models[index]);
+export const getModelById = async (id) => {
+  try {
+    const data = await fetch(`${BASE_URL}/models/${id}`);
+    return await data.json();
+  } catch (error) {
+    console.log(error);
   }
-  return Promise.reject(new Error("Model not found"));
+};
+
+export const increaseVisitorById = async (id) => {
+  try {
+    await fetch(`${BASE_URL}/models/${id}/visit`, { method: "Put" });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getModelResponse = async (id, text) => {
+  try {
+    const data = await fetch(`${BASE_URL}/model/${id}/sandbox?q=${text}`);
+    return await data.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getModelByQuery = async (query) => {
+  try {
+    const data = await fetch(`${BASE_URL}/search?term=${query}`);
+    return await data.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addModel = async (data) => {
+  try {
+    const res = await fetch(`${BASE_URL}/model`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    return res.status;
+  } catch (error) {
+    console.log(error);
+  }
 };
